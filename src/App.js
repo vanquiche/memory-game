@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Display } from './components/Display';
 
-// this is my container and logic
 const myMessages = [
   'apple',
   'blueberry',
@@ -38,13 +37,22 @@ const App = () => {
   const [load, setLoad] = useState(false);
   const [score, setScore] = useState(0);
   const [click, setClick] = useState({});
+  const [cardCount, setCardCount] = useState(5);
   const [highScore, setHighScore] = useState(0);
 
-  function loadArr(amount = 10) {
+  function fillArr() {
+    let index = Math.floor(Math.random() * myMessages.length);
+    if (index >= myMessages.length - 5) index = myMessages.length - 10;
+    const newArr = myMessages.slice(index, index + cardCount);
+    // console.log('loading array');
+    return setLoad(true), newArr;
+  }
+
+  async function loadGame() {
     setLoad(false);
-    const index = Math.floor(Math.random() * myMessages.length);
-    let newValue = myMessages.slice(index, index + amount);
-    setArray1(newValue);
+    setClick({});
+    await setArray1(fillArr());
+    console.log('game is loaded');
   }
 
   function shuffleCard(e) {
@@ -60,42 +68,75 @@ const App = () => {
       [name]: true,
     }));
     if (click[name] === true) {
-      setScore(score - 1);
+      endGame();
     } else setScore(score + 1);
   }
-  // re-deal cards and shuffle
-  function nextRound() {
 
+  function endGame() {
+    setHighScore((prev) => {
+      if (prev > score) return prev;
+      else return score;
+    });
+    setScore(0);
   }
-  // check for losing condition and store high school
-  function gameOver() {
 
+  function displayRound() {
+    let message;
+    const expr = cardCount;
+    switch (expr) {
+      case 5:
+        message = 'Round 1';
+        break;
+      case 8:
+        message = 'Round 2';
+        break;
+      case 11:
+        message = 'Round 3';
+        break;
+    }
+    return message;
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      loadArr();
-      setLoad(true);
-    }, 2000);
-  }, []);
+    const expr = score;
+    switch (expr) {
+      case 0: {
+        setCardCount(5);
+        loadGame();
+        break;
+      }
+      case 5: {
+        setCardCount(8);
+        loadGame();
+        break;
+      }
+      case 13: {
+        setCardCount(11);
+        loadGame();
+        break;
+      }
+      case 24: {
+        setCardCount(14);
+        loadGame();
+        break;
+      }
+    }
+  }, [score, cardCount, highScore]);
 
   return (
     <div>
       <h1>A Game of Memory</h1>
+      <h3>{displayRound()}</h3>
+      <p>
+        score: {score} record: {highScore}
+      </p>
       {load === false ? (
         <Loading message='loading...' />
       ) : (
         <Loading message='' />
       )}
-      {load === true && <Display
-      message={array1}
-      onClick={shuffleCard} />}
-      <ul>
-        {Object.entries(click).map(([key, value], i) => (
-          <li key={i}>{`${key}: ${value}`}</li>
-        ))}
-      </ul>
-      <p>{score}</p>
+      {load === true && <Display message={array1} onClick={shuffleCard} />}
+      <button onClick={loadGame}>new game</button>
     </div>
   );
 };

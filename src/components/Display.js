@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Display = (props) => {
-  const content = props.message;
+  let content = props.message;
 
   return (
     <div>
