@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Display } from './components/Display';
+import {Images} from './components/Images';
+import {catImages} from './components/ImgSrc';
 
 const myMessages = [
   'apple',
@@ -60,7 +62,7 @@ const App = () => {
       return newArr;
     });
   }
-  // improve your shuffle function 
+  // improve your shuffle function
   function shuffleCard(e) {
     let item = e.target.id;
     clickItem(item);
@@ -156,6 +158,7 @@ const App = () => {
       {load === true && <Display message={array1} onClick={shuffleCard} />}
       {/* new game button */}
       <button onClick={loadGame}>new game</button>
+      <Images images={catImages}/>
     </div>
   );
 };
