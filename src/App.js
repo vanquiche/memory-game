@@ -1,34 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Display } from './components/Display';
 import {Images} from './components/Images';
 import {catImages} from './components/ImgSrc';
 
-const myMessages = [
-  'apple',
-  'blueberry',
-  'cucumber',
-  'daikon',
-  'eggplant',
-  'figs',
-  'garlic',
-  'horse radish',
-  'ivy',
-  'kiwi',
-  'lemon',
-  'mandarin',
-  'nectarine',
-  'orange',
-  'peach',
-  'quince',
-  'rhubarb',
-  'strawberry',
-  'turnip',
-  'ugni',
-  'vanilla',
-  'watermelon',
-  'zuchini',
-];
 
+// offset this as its own component
 const Loading = (props) => {
   return <p>{props.message}</p>;
 };
@@ -42,22 +17,15 @@ const App = () => {
   const [cardCount, setCardCount] = useState(5);
   const [highScore, setHighScore] = useState(0);
 
-  // function fillArr() {
-  //   let index = Math.floor(Math.random() * myMessages.length);
-  //   if (index >= myMessages.length - 5) index = myMessages.length - 10;
-  //   const newArr = myMessages.slice(index, index + cardCount);
-  //   // console.log('loading array');
-  //   setLoad(true);
-  //   return newArr;
-  // }
+
 
   async function loadGame() {
     setLoad(false);
     setClick({});
     await setArray1(() => {
-      let index = Math.floor(Math.random() * myMessages.length);
-      if (index >= myMessages.length - 5) index = myMessages.length - 10;
-      const newArr = myMessages.slice(index, index + cardCount);
+      // let index = Math.floor(Math.random() * myMessages.length);
+      // if (index >= myMessages.length - 5) index = myMessages.length - 10;
+      const newArr = catImages;
       setLoad(true);
       return newArr;
     });
@@ -69,7 +37,7 @@ const App = () => {
     const shuffleArr = array1.sort(() => (Math.random() > 0.5 ? 1 : -1));
     setArray1([...shuffleArr]);
   }
-
+  // accepts the target ID
   function clickItem(name) {
     setClick((prev) => ({
       ...prev,
@@ -88,7 +56,9 @@ const App = () => {
     setScore(0);
   }
 
+  // offset this as its own component
   function displayRound() {
+    // decides round number by cards in play
     let message;
     const expr = cardCount;
     switch (expr) {
@@ -143,6 +113,7 @@ const App = () => {
     <div>
       <h1>A Game of Memory</h1>
       {/* put ths in a header component */}
+      {/* displayRound should be a component */}
       <h3>{displayRound()}</h3>
       <p>
         score: {score} record: {highScore}
@@ -155,10 +126,9 @@ const App = () => {
         <Loading message='' />
       )}
       {/* output display component */}
-      {load === true && <Display message={array1} onClick={shuffleCard} />}
+      {load === true && <Images images={catImages} onClick={shuffleCard} />}
       {/* new game button */}
       <button onClick={loadGame}>new game</button>
-      <Images images={catImages}/>
     </div>
   );
 };
