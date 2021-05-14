@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {Images} from './components/Images';
-import {catImages} from './components/ImgSrc';
-
-
-// offset this as its own component
-const Loading = (props) => {
-  return <p>{props.message}</p>;
-};
+import { Images } from './components/Images';
+import { catImages } from './components/ImgSrc';
+import { Round } from './components/Round';
+import { Score } from './components/Score';
+import { Loading } from './components/Loading';
+import './gameboard.css';
 
 const App = () => {
   // states
@@ -17,35 +15,58 @@ const App = () => {
   const [cardCount, setCardCount] = useState(5);
   const [highScore, setHighScore] = useState(0);
 
-
-
-  async function loadGame() {
+  function loadGame() {
     setLoad(false);
     setClick({});
-    await setArray1(() => {
-      // let index = Math.floor(Math.random() * myMessages.length);
-      // if (index >= myMessages.length - 5) index = myMessages.length - 10;
-      const newArr = catImages;
+    setArray1(() => {
+      let index = Math.floor(Math.random() * catImages.length);
+      if (index >= catImages.length - 5) index = catImages.length - 10;
+      const newArr = catImages.slice(index, index + cardCount);
       setLoad(true);
       return newArr;
     });
   }
-  // improve your shuffle function
+  function shuffleArray() {
+    let [...shufArray] = array1;
+    let i = 0;
+    let l = array1.length;
+    for (i; i < l; i++) {
+      const j = Math.floor(Math.random() * l);
+      const temp = shufArray[i];
+      shufArray[i] = shufArray[j];
+      shufArray[j] = temp;
+    }
+    return shufArray;
+  }
+
   function shuffleCard(e) {
     let item = e.target.id;
-    clickItem(item);
-    const shuffleArr = array1.sort(() => (Math.random() > 0.5 ? 1 : -1));
+    checkClick(item);
+    const shuffleArr = shuffleArray();
     setArray1([...shuffleArr]);
   }
-  // accepts the target ID
-  function clickItem(name) {
+
+  function answerUI(classname) {
+    const gameboard = document.getElementById('gameContainer');
+    gameboard.classList.add(classname);
+    setTimeout(() => {
+      gameboard.classList.remove(classname);
+    }, 300);
+  }
+
+  function checkClick(name) {
+    // accepts the target ID
     setClick((prev) => ({
       ...prev,
       [name]: true,
     }));
     if (click[name] === true) {
+      answerUI('incorrect');
       endGame();
-    } else setScore(score + 1);
+    } else {
+      setScore(score + 1);
+      answerUI('correct');
+    }
   }
 
   function endGame() {
@@ -56,30 +77,7 @@ const App = () => {
     setScore(0);
   }
 
-  // offset this as its own component
-  function displayRound() {
-    // decides round number by cards in play
-    let message;
-    const expr = cardCount;
-    switch (expr) {
-      case 5:
-        message = 'Round 1';
-        break;
-      case 8:
-        message = 'Round 2';
-        break;
-      case 11:
-        message = 'Round 3';
-        break;
-      default:
-        message = '';
-        break;
-    }
-    return message;
-  }
-
   useEffect(() => {
-    console.log('useEffect begins');
     const expr = score;
     switch (expr) {
       case 0: {
@@ -106,29 +104,24 @@ const App = () => {
         return;
       }
     }
-
   }, [score, cardCount]);
 
   return (
     <div>
       <h1>A Game of Memory</h1>
-      {/* put ths in a header component */}
-      {/* displayRound should be a component */}
-      <h3>{displayRound()}</h3>
-      <p>
-        score: {score} record: {highScore}
-      </p>
-      <p>card count: {cardCount}</p>
-      {/* loading component here */}
+
+      <Round cards={cardCount} />
+
+      <Score score={score} record={highScore} />
+
       {load === false ? (
         <Loading message='loading...' />
       ) : (
         <Loading message='' />
       )}
-      {/* output display component */}
-      {load === true && <Images images={catImages} onClick={shuffleCard} />}
-      {/* new game button */}
-      <button onClick={loadGame}>new game</button>
+      <div id='gameContainer' className='gameboard'>
+        {load === true && <Images images={array1} onClick={shuffleCard} />}
+      </div>
     </div>
   );
 };

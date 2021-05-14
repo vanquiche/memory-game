@@ -4,8 +4,9 @@ export const Images = (props) => {
   const content = props.images;
   const styles = {
     cursor: 'pointer',
-    height: 'auto',
-    width: 250 };
+    height: 150,
+    width: 'auto',
+  };
 
   return (
     <div>
