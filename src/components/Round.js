@@ -18,5 +18,5 @@ export const Round = (props) => {
         break;
     }
 
-  return <h3>{message}</h3>;
+  return <h3 className={props.className}>{message}</h3>;
 };

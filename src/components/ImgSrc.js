@@ -29,6 +29,25 @@ import sweetDreams from '../images/SweetDreams.jpg';
 import tigger from '../images/Tigger.jpg';
 import tiki from '../images/Tiki.jpg';
 import turkVan from '../images/TurkVan.jpg';
+import goldieInToilet from '../images/GoldieInToilet.jpg';
+import mellonHelmet from '../images/MellonHelmet.jpg';
+import fidelByAgi from '../images/FidelByAgi.jpg';
+import puppets from '../images/Puppets.jpg';
+import catSink from '../images/CatSink.jpg';
+import toothbrush from '../images/Toothbrush.jpg';
+import iKnow from '../images/I-Know.jpg';
+import blackieGoldie from '../images/Blackie-Goldie.jpg';
+import millen from '../images/Millen.jpg';
+import neuter from '../images/Neuter.jpg';
+import pianoCat from '../images/PianoCat.jpg';
+import silk from '../images/Silk.jpg';
+import benPaws from '../images/Ben-Paws.jpg';
+import bonnie from '../images/Bonnie.jpg';
+import box from '../images/Box.jpg';
+import basket2 from '../images/Basket2.jpg';
+import bwStuffed from '../images/BWStuffed.jpg';
+import mrGQ from '../images/Mr-GQ.jpg';
+import popeye2 from '../images/Popeye2.jpg';
 
 export const catImages = [
   {
@@ -185,5 +204,100 @@ export const catImages = [
     src: turkVan,
     alt: 'turk kitty',
     id: 'turkVan',
+  },
+  {
+    src: goldieInToilet,
+    alt: 'goldie in toilet',
+    id: 'goldieInToilet',
+  },
+  {
+    src: mellonHelmet,
+    alt: 'cat wearing a melon as helmet',
+    id: 'melonHelmet',
+  },
+  {
+    src: fidelByAgi,
+    alt: 'fidel by Agi',
+    id: 'fidelByAgi',
+  },
+  {
+    src: puppets,
+    alt: 'puppets',
+    id: 'puppets',
+  },
+  {
+    src: catSink,
+    alt: 'cat in a sink',
+    id: 'catSink',
+  },
+  {
+    src: toothbrush,
+    alt: 'toothbrush cat',
+    id: 'toothbrush',
+  },
+  {
+    src: iKnow,
+    alt: 'I know',
+    id: 'iKnow',
+  },
+  {
+    src: blackieGoldie,
+    alt: 'two kitties',
+    id: 'blackieGoldie',
+  },
+  {
+    src: millen,
+    alt: 'cat named Millen',
+    id: 'millen',
+  },
+  {
+    src: popeye2,
+    alt: 'cat named Popeye',
+    id: 'popeye2',
+  },
+  {
+    src: mrGQ,
+    alt: 'Mr GC kitty',
+    id: 'mrGQ',
+  },
+  {
+    src: bwStuffed,
+    alt: 'black and white photo of kitty',
+    id: 'bwStuffed',
+  },
+  {
+    src: basket2,
+    alt: 'cat in a basket',
+    id: 'basket2',
+  },
+  {
+    src: box,
+    alt: 'cat in a box',
+    id: 'box',
+  },
+  {
+    src: bonnie,
+    alt: 'cat named Bonnie',
+    id: 'bonnie',
+  },
+  {
+    src: silk,
+    alt: 'cat in silk',
+    id: 'silk',
+  },
+  {
+    src: pianoCat,
+    alt: 'cat stanind on a piano',
+    id: 'painoCat',
+  },
+  {
+    src: neuter,
+    alt: 'cat hanging out',
+    id: 'neuter',
+  },
+  {
+    src: benPaws,
+    alt: 'mr ben paws',
+    id: 'benPaws',
   },
 ];

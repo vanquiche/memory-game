@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Score = (props) => {
   return (
-    <p>
+    <p className={props.className}>
       score: {props.score} record: {props.record}
     </p>
   );

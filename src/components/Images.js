@@ -2,11 +2,7 @@ import React from 'react';
 
 export const Images = (props) => {
   const content = props.images;
-  const styles = {
-    cursor: 'pointer',
-    height: 150,
-    width: 'auto',
-  };
+ 
 
   return (
     <div>
@@ -16,7 +12,7 @@ export const Images = (props) => {
           key={`${image.name}_${index}`}
           alt={image.alt}
           src={image.src}
-          style={styles}
+          className={props.className}
           onClick={props.onClick}
         />
       ))}
