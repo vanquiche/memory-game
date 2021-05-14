@@ -41,18 +41,18 @@ const App = () => {
     return shufArray;
   }
 
-  function shuffleCard(e) {
+  function handleClick(e) {
     let item = e.target.id;
     checkClick(item);
     const shuffleArr = shuffleArray();
     setArray1([...shuffleArr]);
   }
 
-  function answerUI(classname) {
-    const gameboard = document.getElementById('gameContainer');
-    gameboard.classList.add(classname);
+  function answerUI(classname, element) {
+    const el = document.getElementById(element);
+    el.classList.add(classname);
     setTimeout(() => {
-      gameboard.classList.remove(classname);
+      el.classList.remove(classname);
     }, 400);
   }
 
@@ -63,11 +63,11 @@ const App = () => {
       [name]: true,
     }));
     if (click[name] === true) {
-      answerUI('incorrect');
+      answerUI('incorrect', 'info');
       endGame();
     } else {
       setScore(score + 1);
-      answerUI('correct');
+      answerUI('correct', 'info');
     }
   }
 
@@ -111,9 +111,9 @@ const App = () => {
   return (
     <div>
       <h1 className='title'>The Meow-mory Game</h1>
-      <div className='infoBar'>
-        <Round cards={cardCount} />
-        <Score score={score} record={highScore} />
+      <div id='info' className='infoBar'>
+        <Round className={'scoreCount'} cards={cardCount} />
+        <Score className={'scoreCount'} score={score} record={highScore} />
       </div>
       {load === false ? (
         <Loading message='loading...' />
@@ -122,9 +122,10 @@ const App = () => {
       )}
       <div id='gameContainer' className='gameboard'>
         {load === true && (
-          <Images images={array1} onClick={shuffleCard} className={'card'} />
+          <Images images={array1} onClick={handleClick} className={'card'} />
         )}
       </div>
+      <p className='instructionText'>Instructions: ...</p>
     </div>
   );
 };

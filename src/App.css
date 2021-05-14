@@ -7,19 +7,7 @@
   align-items: center;
   width: 800px;
   padding: 10px;
-  margin: 10px auto 10px auto;
-  border: 4px solid transparent;
-  transition: border 0.2s linear;
-}
-
-.correct {
-  border: 4px solid green;
-  /* box-shadow: 1px 1px 5px 5px  green; */
-}
-
-.incorrect {
-  border: 4px solid tomato;
-  /* box-shadow: 1px 1px 5px 5px  tomato; */
+  margin: 0 auto 10px auto;
 }
 
 .card {
@@ -31,14 +19,34 @@
 
 .title {
   text-align: center;
-  font-size: 2rem;
-  margin: 20px;
+  font-size: 3rem;
+  font-family: Itim;
+  margin: 20px 0 10px 0;
+  z-index: 100;
 }
 
 .infoBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 700px;
-  margin: auto;
+  width: 750px;
+  padding: 10px;
+  margin: 0 auto 0 auto;
+  background-color: #f0ebb6;
+  transition: border 0.2s linear;
+}
+.scoreCount {
+  font-family: Poppins;
+}
+.correct {
+  background-color: #a1fcb5;
+}
+
+.incorrect {
+  background-color: #f35353;
+}
+
+.instructionText {
+  text-align: center;
+  font-family: Poppins;
 }
