@@ -7,11 +7,14 @@ export const Round = (props) => {
       case 5:
         message = 'Round 1';
         break;
-      case 8:
+      case 10:
         message = 'Round 2';
         break;
-      case 11:
+      case 15:
         message = 'Round 3';
+        break;
+      case 20:
+        message = 'Round 4';
         break;
       default:
         message = 'hello';
