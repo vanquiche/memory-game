@@ -125,7 +125,13 @@ const App = () => {
           <Images images={array1} onClick={handleClick} className={'card'} />
         )}
       </div>
-      <p className='instructionText'>Instructions: ...</p>
+      <p className='instructionText'>
+        This game will test how good you can remember cats - a very important
+        life skill! Each turn click on one cat, but only once per round! (You
+        know how picky cats can be with their petting preferences...) Once you
+        have selected all of them, you win the round and move onto the next! If
+        you select a cat twice in the round, you lose!
+      </p>
     </div>
   );
 };
